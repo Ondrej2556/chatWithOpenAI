@@ -5,15 +5,16 @@ font-family: 'Special Elite', cursive;
 text-align: center;
 font-size: 4vw;
 }
-html,body{
+html{
    margin: 0;
    height: 100%; 
-   background: linear-gradient(120deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1));
+   background:linear-gradient(120deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1)) ; 
 }
 .App{
     display: flex;
     align-items: center;
     flex-direction: column;
+
 }
 .chat{
     padding: 10px;
@@ -24,7 +25,7 @@ html,body{
     height: 60vh;
     width: 60vw;
     overflow: auto;
-    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
     border-radius: 1em;
 }
 .chat img{
@@ -35,7 +36,7 @@ html,body{
     padding: 10px;
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.1);
     border-radius: 1em;
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(360deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1));
 }
 .msgHeader{
     display: flex;
@@ -68,7 +69,7 @@ input {
     outline: none;
 }
   
-.button {
+#button {
     width: 15vw;
     height: 45px;
     font-family: 'Roboto', sans-serif;
@@ -84,9 +85,9 @@ input {
     transition: all 0.3s ease 0s;
     cursor: pointer;
     outline: none;
-    }
-  /*green #2EE59D*/
-  .button:hover {
+}
+
+#button:hover {
     background-color: #2EE59D;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     color: #fff;
