@@ -41,7 +41,7 @@ function App() {
       </div>
       <div className="inputs">
       <input  onChange={(e)=>setMessage({message:e.target.value, name:"user", srcImage:mrBeanProfilePicture})}/>
-      <button onClick={handleClick} className='button'>SEND</button>
+      <button onClick={handleClick} className='button'>CHAT!</button>
       </div>
       
     </div>
