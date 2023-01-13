@@ -3,11 +3,12 @@ import { useState,useRef, useEffect } from 'react';
 import rockProfilePicture from './images/theRock.png'
 import mrBeanProfilePicture from './images/mrBean.png'
 import ParticlesBg from 'particles-bg'
+import { AiOutlineSend } from "react-icons/ai";
 
 function App() {
   const [message, setMessage] = useState({});
   const [messageArray, setMessageArray] = useState([{
-    message:" You can ask me anything you want :)",
+    message:"Hi, I'm Dwayne Johnson.",
     name: "Dwayne Johnson",
     srcImage: rockProfilePicture
     },
@@ -58,25 +59,32 @@ function App() {
   
   return (
     <div className="App">
-      <h1>Chat with Dwayne Johnson</h1>
-      <div className='chat' ref={divRef}>
-      {messageArray.map((data, index) => {
-      return (
-            <div className="oneMessage" key={index}>
-                <div className="msgHeader">
-                  <img src={data.srcImage} width="50vw" height="50vh"/>
-                  <h5 >{data.name}</h5>
+      <h1>Chat With Famous People</h1>
+      <div className="chatBox">
+        <div className='chat' ref={divRef}>
+          {messageArray.map((data, index) => {
+          return (
+                <div className="oneMessage" key={index}>
+                    <div className="msgHeader">
+                      <img src={data.srcImage} width="50vw" height="50vh"/>
+                      <h5 >{data.name}</h5>
+                    </div>
+                    <p>{data.message}</p>
                 </div>
-                <p>{data.message}</p>
-            </div>
-            )
-      })}
+                )
+          })}
+        </div>
+        <div className="sidebar">
+          <p>Dwayne Johnson</p>
+          <p>Jason Statham</p>
+          <p>Steve Jobs</p>
+        </div>
       </div>
       <div className="inputs">
-      <input id="messInput" onChange={(e)=>setMessage({message:e.target.value,name:"user",srcImage:mrBeanProfilePicture})} placeholder="ASK ME ANYTHING"/>
-      <button onClick={handleClick} id="button">CHAT!</button>
+        <input id="messInput" onChange={(e)=>setMessage({message:e.target.value,name:"user",srcImage:mrBeanProfilePicture})} placeholder="MESSAGE"/>
+        <button onClick={handleClick} id="button"><AiOutlineSend /></button>
       </div>
-      <ParticlesBg  num={50} type="cobweb" bg={true} />
+      <ParticlesBg  num={150} type="cobweb" bg={true} />
     </div>
   )
 }
