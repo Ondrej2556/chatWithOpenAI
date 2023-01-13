@@ -13,7 +13,8 @@ app.post('/', function (req, res) {
         url: 'https://api.openai.com/v1/completions',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer API_KEY`
+            'Authorization': `Bearer YOUR_API_KEY`
+            //GET YOUR API KEY ON OFFICIAL OPENAI WEB
         },
         data: {
             model: "text-davinci-003",
