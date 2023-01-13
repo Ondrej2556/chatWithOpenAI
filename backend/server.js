@@ -1,13 +1,19 @@
 const axios = require('axios');
 const express = require('express');
 var cors = require('cors');
-const { rsort } = require('semver');
 const app = express();
 
 app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({ extended:true }));
 
-app.post('/', function (req, res) {
+const db = {
+    username: "ondrej",
+    password: "ondrej"
+}
+
+
+app.post('/chat', function (req, res) {
     const options = {
         method: 'POST',
         url: 'https://api.openai.com/v1/completions',
@@ -34,9 +40,16 @@ app.post('/', function (req, res) {
     .catch(error => {
         res.status(400).send("Something went wrong", error);
     });
-   
+})
+
+app.post("/login", async (req, res) => {
+    const {username,password} = await req.body
+    if(username === db.username && password === db.password){
+        return res.json(db.username)
+    }else{
+        return res.status(400).json("Sorry, there was an error")
+    }
+
   })
-
-
 
 app.listen(6999, ()=> console.log("listening on port 6999..."));

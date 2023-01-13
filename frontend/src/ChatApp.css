@@ -26,8 +26,6 @@ p{
 /************************************************/
 /**************  LOGIN CSS  *********************/
 /************************************************/
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-
 .container {
 	display: flex;
 	align-items: center;

@@ -59,6 +59,7 @@ function ChatApp() {
   return (
     <div className="App">
       <h1>Chat With Famous People</h1>
+      <button onClick={()=>window.location.reload()}>Sign Out</button>
       <div className="chatBox">
         <div className='chat' ref={divRef}>
           {messageArray.map((data, index) => {

@@ -2,13 +2,13 @@ import './ChatApp.css';
 import ParticlesBg from 'particles-bg'
 import Form from './components/Form';
 import ChatApp from './components/ChatApp'
-
+import { useState } from 'react';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <>
-    <Form />
-    {/* <ChatApp /> */}
+    {loggedIn ? <ChatApp /> : <Form setLoggedIn={setLoggedIn}/>}
     <ParticlesBg  num={150} type="cobweb" bg={true} />
     </>
   )
