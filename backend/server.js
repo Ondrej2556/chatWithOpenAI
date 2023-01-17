@@ -1,26 +1,27 @@
 const axios = require('axios');
 const express = require('express');
 var cors = require('cors');
+const dotenv = require('dotenv')
 const app = express();
 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended:true }));
+dotenv.config();
 
 const db = {
     username: "ondrej",
     password: "ondrej"
 }
 
-
+API_KEY = process.env.OPENAI_API
 app.post('/chat', function (req, res) {
-    console.log(req.body)
     const options = {
         method: 'POST',
         url: 'https://api.openai.com/v1/completions',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer YOUR_API_KEY`
+            'Authorization': `Bearer ${API_KEY}`
             //GET YOUR API KEY ON OFFICIAL OPENAI WEB
         },
         data: {
