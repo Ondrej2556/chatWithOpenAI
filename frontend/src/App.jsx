@@ -5,7 +5,7 @@ import ChatApp from './components/ChatApp'
 import { useState } from 'react';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   return (
     <>
     {loggedIn ? <ChatApp /> : <Form setLoggedIn={setLoggedIn}/>}

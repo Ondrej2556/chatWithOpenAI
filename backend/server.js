@@ -14,6 +14,7 @@ const db = {
 
 
 app.post('/chat', function (req, res) {
+    console.log(req.body)
     const options = {
         method: 'POST',
         url: 'https://api.openai.com/v1/completions',
@@ -24,8 +25,7 @@ app.post('/chat', function (req, res) {
         },
         data: {
             model: "text-davinci-003",
-            prompt: `Answer like you are Dwayne Johnson. Answer in 50 words max. If the question asks 
-                     who are you, then reply "Dwayne Johnson". Question: ${req.body.message}`,
+            prompt: `Pretend and answer like you were ${req.body.person}. Answer in 30 words max. Question: ${req.body.message}`,
             max_tokens: 50
         }
     };

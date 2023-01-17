@@ -2,16 +2,21 @@ import '../ChatApp.css';
 import { useState,useRef, useEffect } from 'react';
 import rockProfilePicture from '../images/theRock.png'
 import mrBeanProfilePicture from '../images/mrBean.png'
+import andrewTateProfilePicture from '../images/andrewTate.png'
+import steveJobsProfilePicture from '../images/steveJobs.png'
+import jasonStathamProfilePicture from '../images/JasonStatham.png'
 import { AiOutlineSend } from "react-icons/ai";
 
 function ChatApp() {
   const [message, setMessage] = useState({});
   const [messageArray, setMessageArray] = useState([{
-    message:"Hi, I'm Dwayne Johnson.",
-    name: "Dwayne Johnson",
-    srcImage: rockProfilePicture
-    },
+      message:"Hi, I'm Dwayne Johnson.",
+      name: "Dwayne Johnson",
+      srcImage: rockProfilePicture
+      },
   ]);
+ 
+
 
 
   const divRef = useRef(null);
@@ -37,7 +42,7 @@ function ChatApp() {
 
   //send server data and recieve respons with text from bot
   async function getData(){
-    const data = { message: message.message };
+    const data = { message: message.message, person: messageArray[0].name };
       let api = await fetch('http://localhost:6999/chat',{
                       method: 'POST', 
                       headers: {
@@ -49,13 +54,23 @@ function ChatApp() {
       
       const botResponse ={
         message: apijson.text,
-        name: "Dwayne Johnson",
-        srcImage: rockProfilePicture
+        name: messageArray[0].name,
+        srcImage: messageArray[0].srcImage
       }
       setMessageArray(prevArray => ([...prevArray, botResponse]));
 
   }
   
+  const choosePerson = (name,profilePicture)=>{
+    const person = {
+      message:`Hi, I'm ${name}`, 
+      name: name, 
+      srcImage: profilePicture
+    }
+    // setMessageArray(prevArray =>([...prevArray, person]))
+    setMessageArray([person])
+  }
+
   return (
     <div className="App">
       <h1>Chat With Famous People</h1>
@@ -75,9 +90,10 @@ function ChatApp() {
           })}
         </div>
         <div className="sidebar">
-          <p>Dwayne Johnson</p>
-          <p>Jason Statham</p>
-          <p>Steve Jobs</p>
+          <p onClick={()=>choosePerson("Dwayne Johnson", rockProfilePicture)}>Dwayne Johnson</p>
+          <p onClick={()=>choosePerson("Jason Statham", jasonStathamProfilePicture)}>Jason Statham</p>
+          <p onClick={()=>choosePerson("Steve Jobs", steveJobsProfilePicture)}>Steve Jobs</p>
+          <p onClick={()=>choosePerson("Andrew Tate", andrewTateProfilePicture)}>Andrew Tate</p>
         </div>
       </div>
       <div className="inputs">
