@@ -12,6 +12,7 @@ font-size: 4vw;
 h2{
     font-family: 'Special Elite', cursive;
     text-align: center;
+    font-size: 2vw;
     }
 html{
    margin: 0;
@@ -241,7 +242,9 @@ img{
 
 .sidebar{
     width: 20vw;
-    border-left: 1px solid #5929bc;
+    background-color: #5929bc;
+    border-bottom-right-radius: 1em;
+    border-top-right-radius: 1em;
 }
 .chatPerson{
     display: flex;
@@ -257,4 +260,7 @@ img{
     background-color: #2EE59D;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     transform: scale(1.2);
+}
+.active {
+    background-color: #4aeee1;
 }

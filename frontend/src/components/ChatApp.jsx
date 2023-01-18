@@ -67,7 +67,6 @@ function ChatApp() {
       name: name, 
       srcImage: profilePicture
     }
-    // setMessageArray(prevArray =>([...prevArray, person]))
     setMessageArray([person])
   }
 
@@ -90,21 +89,21 @@ function ChatApp() {
         </div>
         <div className="sidebar">
           <h2>Chats</h2>
-          <div className="chatPerson">
+          <div className={`chatPerson ${messageArray[0].name==="Dwayne Johnson" ? "active" : ""}`} onClick={()=>choosePerson("Dwayne Johnson", rockProfilePicture)}>
           <img src={rockProfilePicture} width="50vw" height="50vh"/>
-          <p onClick={()=>choosePerson("Dwayne Johnson", rockProfilePicture)}>Dwayne Johnson</p>
+          <p>Dwayne Johnson</p>
           </div>
-          <div className="chatPerson">
+          <div className={`chatPerson ${messageArray[0].name==="Jason Statham" ? "active" : ""}`} onClick={()=>choosePerson("Jason Statham", jasonStathamProfilePicture)}>
           <img src={jasonStathamProfilePicture} width="50vw" height="50vh"/>
-          <p onClick={()=>choosePerson("Jason Statham", jasonStathamProfilePicture)}>Jason Statham</p>
+          <p>Jason Statham</p>
           </div>
-          <div className="chatPerson">
+          <div className={`chatPerson ${messageArray[0].name==="Steve Jobs" ? "active" : ""}`} onClick={()=>choosePerson("Steve Jobs", steveJobsProfilePicture)}>
           <img src={steveJobsProfilePicture} width="50vw" height="50vh"/>
-          <p onClick={()=>choosePerson("Steve Jobs", steveJobsProfilePicture)}>Steve Jobs</p>
+          <p>Steve Jobs</p>
           </div>
-          <div className="chatPerson">
+          <div className={`chatPerson ${messageArray[0].name==="Andrew Tate" ? "active" : ""}`} onClick={()=>choosePerson("Andrew Tate", andrewTateProfilePicture)}>
           <img src={andrewTateProfilePicture} width="50vw" height="50vh"/>
-          <p onClick={()=>choosePerson("Andrew Tate", andrewTateProfilePicture)}>Andrew Tate</p>
+          <p>Andrew Tate</p>
           </div>
         </div>
       </div>
