@@ -16,12 +16,13 @@ const db = {
 
 API_KEY = process.env.OPENAI_API
 app.post('/chat', function (req, res) {
+    console.log(API_KEY)
     const options = {
         method: 'POST',
         url: 'https://api.openai.com/v1/completions',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${API_KEY}`
+            'Authorization': `${API_KEY}`
             //GET YOUR API KEY ON OFFICIAL OPENAI WEB
         },
         data: {
