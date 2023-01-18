@@ -74,7 +74,6 @@ function ChatApp() {
   return (
     <div className="App">
       <h1>Chat With Famous People</h1>
-      <button onClick={()=>window.location.reload()}>Sign Out</button>
       <div className="chatBox">
         <div className='chat' ref={divRef}>
           {messageArray.map((data, index) => {
@@ -90,10 +89,23 @@ function ChatApp() {
           })}
         </div>
         <div className="sidebar">
+          <h2>Chats</h2>
+          <div className="chatPerson">
+          <img src={rockProfilePicture} width="50vw" height="50vh"/>
           <p onClick={()=>choosePerson("Dwayne Johnson", rockProfilePicture)}>Dwayne Johnson</p>
+          </div>
+          <div className="chatPerson">
+          <img src={jasonStathamProfilePicture} width="50vw" height="50vh"/>
           <p onClick={()=>choosePerson("Jason Statham", jasonStathamProfilePicture)}>Jason Statham</p>
+          </div>
+          <div className="chatPerson">
+          <img src={steveJobsProfilePicture} width="50vw" height="50vh"/>
           <p onClick={()=>choosePerson("Steve Jobs", steveJobsProfilePicture)}>Steve Jobs</p>
+          </div>
+          <div className="chatPerson">
+          <img src={andrewTateProfilePicture} width="50vw" height="50vh"/>
           <p onClick={()=>choosePerson("Andrew Tate", andrewTateProfilePicture)}>Andrew Tate</p>
+          </div>
         </div>
       </div>
       <div className="inputs">
