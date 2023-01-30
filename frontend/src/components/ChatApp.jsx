@@ -72,7 +72,6 @@ function ChatApp() {
 
   return (
     <div className="App">
-      <h1>Chat With Famous People</h1>
       <div className="chatBox">
         <div className='chat' ref={divRef}>
           {messageArray.map((data, index) => {

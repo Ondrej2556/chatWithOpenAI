@@ -3,11 +3,30 @@ const express = require('express');
 var cors = require('cors');
 const dotenv = require('dotenv')
 const app = express();
-
+const mysql = require('mysql2');
+const bcrypt = require('bcrypt');
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended:true }));
 dotenv.config();
+const salt = bcrypt.genSaltSync(10);
+
+
+const connection = mysql.createConnection({
+    host: "localhost",
+    port: 7899, 
+    user: "root",
+    database:"chatAppDB"
+})
+
+connection.connect(function(err) {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+   
+});
+
 
 const db = {
     username: "ondrej",
@@ -44,13 +63,28 @@ app.post('/chat', function (req, res) {
 })
 
 app.post("/login", async (req, res) => {
-    const {username,password} = await req.body
-    if(username === db.username && password === db.password){
-        return res.json(db.username)
-    }else{
-        return res.status(400).json("Sorry, there was an error")
-    }
-
+    const {username,password} = await req.body;
+    const hash = bcrypt.hashSync(password, salt);
+    connection.query(`SELECT username FROM users where username="${username}" AND password="${hash}"`, function (err, result, fields) {
+        if (err) throw err;
+        if(result.length === 0){
+            return res.status(303).json("Bad credentials");
+        }else{
+            return res.status(201).json(result[0].username)
+        }
+    });
   })
+
+
+app.post("/register", async (req,res) =>{
+    const {username, password} = await req.body;
+    const hash = bcrypt.hashSync(password, salt);
+
+    connection.query(`INSERT INTO users (id, username,password) VALUES (id, "${username}", "${hash}")`, function (err, result, fields) {
+        if (err) throw err;
+        //Tady potrebuju dopsat response na successful register
+        console.log("success!")
+    });
+})
 
 app.listen(6999, ()=> console.log("listening on port 6999..."));
