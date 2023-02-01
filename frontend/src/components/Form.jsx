@@ -7,11 +7,12 @@ const Form = ({setLoggedIn})=>{
 
     return(
         <>
+        <h1>Chat With Famous People</h1>
         {isRegistered 
         ? 
         <LogInForm setLoggedIn={setLoggedIn} setIsRegistered={setIsRegistered}/> 
         : 
-        <RegisterForm setIsRegistered={setIsRegistered}/>}
+        <RegisterForm setLoggedIn={setLoggedIn} setIsRegistered={setIsRegistered}/>}
         </>
       )
 }

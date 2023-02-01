@@ -9,7 +9,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   return (
     <>
-    <h1>Chat With Famous People</h1>
     {loggedIn ? <><Navigation /> <ChatApp /> </>: <Form setLoggedIn={setLoggedIn}/>}
     <ParticlesBg  num={150} type="cobweb" bg={true} />
     </>

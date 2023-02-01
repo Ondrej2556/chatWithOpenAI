@@ -9,7 +9,6 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended:true }));
 dotenv.config();
-const salt = bcrypt.genSaltSync(10);
 
 
 const connection = mysql.createConnection({
@@ -64,12 +63,11 @@ app.post('/chat', function (req, res) {
 
 app.post("/login", async (req, res) => {
     const {username,password} = await req.body;
-    const hash = bcrypt.hashSync(password, salt);
-    connection.query(`SELECT username FROM users where username="${username}" AND password="${hash}"`, function (err, result, fields) {
+    connection.query(`SELECT username, password FROM users where username="${username}"`, function (err, result, fields) {
         if (err) throw err;
         if(result.length === 0){
             return res.status(303).json("Bad credentials");
-        }else{
+        }else if (bcrypt.compareSync(password, result[0].password)){
             return res.status(201).json(result[0].username)
         }
     });
@@ -78,12 +76,20 @@ app.post("/login", async (req, res) => {
 
 app.post("/register", async (req,res) =>{
     const {username, password} = await req.body;
+    const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
     connection.query(`INSERT INTO users (id, username,password) VALUES (id, "${username}", "${hash}")`, function (err, result, fields) {
-        if (err) throw err;
-        //Tady potrebuju dopsat response na successful register
-        console.log("success!")
+        if(err){
+            if (err.code === "ER_DUP_ENTRY"){
+                return res.status(301).json("Username already exists.")
+            }else{
+            throw err;
+            }
+        }else{
+            return res.status(201).json(username)
+        }
+        
     });
 })
 

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { FaChevronRight, FaLock, FaUserAlt } from "react-icons/fa";
 
-const RegisterForm = ({setIsRegistered})=>{
+const RegisterForm = ({setLoggedIn, setIsRegistered})=>{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [badCredentials, setBadCredentials] = useState(false);
+    const [userNameAlreadyExists, setUserNameAlreadyExists] = useState(false);
 
 
     const handleRegister = (e) =>{
@@ -19,6 +20,9 @@ const RegisterForm = ({setIsRegistered})=>{
                         body: JSON.stringify({username: username, password: password})
                         })
                             .then(res => res.json())
+                            .then(res =>{
+                                res === username ? setLoggedIn(true) : setUserNameAlreadyExists(true);
+                            })
                             .catch(err => console.log("Sorry, there was an error: ", err))
             }
     }
@@ -30,6 +34,7 @@ const RegisterForm = ({setIsRegistered})=>{
                     <h2 style={{color:"black"}}>Register</h2>
                         <form className="login">
                             {badCredentials&&<label style={{color: "red", fontSize: "20px"}}>Missing username and/or password</label>}
+                            {userNameAlreadyExists&&<label style={{color: "red", fontSize: "20px"}}>Username Already Exists</label>}
                             <div className="login__field">
                                 <i className="login__icon"><FaUserAlt /></i>
                                 <input onChange={(e)=> setUsername(e.target.value)} type="text" className="login__input" placeholder="User name" />
