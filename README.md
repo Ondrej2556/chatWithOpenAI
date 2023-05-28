@@ -18,6 +18,13 @@ Funkce:
 -Chatovací okno pro konverzaci s vybranou slavnou osobností
 -Možnost poslat dotaz a zobrazit odpověď generovanou pomocí OpenAI API-Možnost odhlášení
 
+Main page - login/register
+![image](https://github.com/Ondrej2556/chatWithOpenAI/assets/115801896/5adf29d4-c455-4660-9df5-f2fc4d2ee10e)
+
+Chat page
+![image](https://github.com/Ondrej2556/chatWithOpenAI/assets/115801896/358a6bef-3e76-4c84-bf73-e1091c9bf44d)
+
+
 
 /**************************************************/
 /*            ENGLISH README                      */
